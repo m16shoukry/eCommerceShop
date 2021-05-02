@@ -9,7 +9,7 @@ import Message from '../components/Message.js'
 
 
 
-export const ProductScreen = ({ match }) => {
+export const ProductScreen = ({ history, match }) => {
 
     const [qty, setQty] = useState(0)
 
@@ -22,7 +22,9 @@ export const ProductScreen = ({ match }) => {
        dispatch(listProductDetails(match.params.id)) 
     }, [dispatch, match])
 
-    
+    const addToCartHandler = () => {
+        history.push(`/cart/${match.params.id}?qty=${qty}`)
+    }
 
     return (
         <>
