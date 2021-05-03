@@ -11,7 +11,7 @@ import Message from '../components/Message.js'
 
 export const ProductScreen = ({ history, match }) => {
 
-    const [qty, setQty] = useState(0)
+    const [qty, setQty] = useState(1)
 
     const dispatch = useDispatch()
     
@@ -32,14 +32,15 @@ export const ProductScreen = ({ history, match }) => {
           Go Back
           </Link>
           {
-          loading ? 
-          <Loader /> : 
-          error ? <Message variant='danger'>{error}</Message> : 
+          loading ? (
+          <Loader /> ) : 
+          error ? ( <Message variant='danger'>{error}</Message> ) : 
           (
-               <Row>
+            <Row>
                <Col md={6}>
                <Image src={product.image} alt={product.name} fluid />
                </Col>
+
                <Col md={3}>
                    <ListGroup variant='flush'>
                      <ListGroup.Item>
@@ -51,14 +52,17 @@ export const ProductScreen = ({ history, match }) => {
                              text={`${product.numReviews} reviews`}
                          />
                      </ListGroup.Item>
+
                      <ListGroup.Item>
                          Price: ${product.price}
                      </ListGroup.Item>
+
                      <ListGroup.Item>
                          Description: ${product.description}
                      </ListGroup.Item>
                    </ListGroup>
                </Col>
+               
                <Col md={3}>
                    <Card>
                        <ListGroup variant='flush'>
@@ -70,6 +74,7 @@ export const ProductScreen = ({ history, match }) => {
                                    </Col>
                                </Row>
                            </ListGroup.Item>
+
                            <ListGroup.Item>
                                <Row>
                                    <Col>Status:</Col>
@@ -78,6 +83,7 @@ export const ProductScreen = ({ history, match }) => {
                                    </Col>
                                </Row>
                            </ListGroup.Item>
+
                            {product.countInStock > 0 && (
                                <ListGroup.Item>
                                    <Row>
@@ -100,11 +106,13 @@ export const ProductScreen = ({ history, match }) => {
                                    </Row>
                                </ListGroup.Item>
                            )}
+
                            <ListGroup.Item>
                               <Button 
                                  className='btn-block' 
                                  type='button' 
                                  disabled={product.countInStock === 0}
+                                 onClick={addToCartHandler}
                                  >
                                   Add To Cart
                                   </Button>
