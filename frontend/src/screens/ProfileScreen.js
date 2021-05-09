@@ -1,42 +1,44 @@
-import React, {useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message.js'
 import Loader from '../components/Loader.js'
-import { getUserDetails } from '../actions/userActions.js'
+import { getUserDetails, updateUserProfile } from '../actions/userActions.js'
 
 
 
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState('')  
   const [email, setEmail] = useState('')
-  const [Password, setPassword] = useState('')
-  const [ConfirmPassword, setConfirmPassword] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState(null)
 
 
   const dispatch = useDispatch()
 
-  const userDetails = useSelector((state) => state.userDetails)
-  const { loading, error, user } = userDetails
-
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  const userDetails = useSelector((state) => state.userDetails)
+  const { loading, error, user } = userDetails
+
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
+  const { success } = userUpdateProfile
 
   useEffect(() => {
     if (!userInfo) {
       history.push('/login')
     }
     else {
-        if(!user.name) {
+        if (!user.name) {
             dispatch(getUserDetails('profile'))
         } else {
             setName(user.name)
             setEmail(user.email)
         }
     }
-  }, [dispatch, history, userInfo, user ])
+  }, [dispatch, history, userInfo, user])
 
 
   const submitHandler = (e) => {
@@ -45,7 +47,12 @@ const ProfileScreen = ({ location, history }) => {
         setMessage('Password do not match')
     }
     else {
-    dispatch(update(name, email, password))
+        dispatch(updateUserProfile({ 
+            id: user._id,
+            name,
+            email,
+            password,
+        }))
     }
   }
 
@@ -55,9 +62,10 @@ const ProfileScreen = ({ location, history }) => {
         <h2>User Profile</h2>
         {message && <Message variant='danger'>{message}</Message>}
         {error && <Message variant='danger'>{error}</Message>}
+        {success && <Message variant='success'>Updated Successfully!</Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
-        <Form.Group controlId='email'>
+        <Form.Group controlId='name'>
             <Form.Label>Full Name</Form.Label>
             <Form.Control
                 type='name'

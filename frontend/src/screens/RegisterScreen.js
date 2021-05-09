@@ -12,8 +12,8 @@ import FormContainer from '../components/FormContainer.js'
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState('')  
   const [email, setEmail] = useState('')
-  const [Password, setPassword] = useState('')
-  const [ConfirmPassword, setConfirmPassword] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState(null)
 
 
@@ -48,7 +48,7 @@ const RegisterScreen = ({ location, history }) => {
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
-      <Form.Group controlId='email'>
+      <Form.Group controlId='name'>
           <Form.Label>Full Name</Form.Label>
           <Form.Control
             type='name'
