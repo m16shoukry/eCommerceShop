@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler'
-import User from '../models/userModel.js'
 import generateToken from '../utils/generateToken.js'
+import User from '../models/userModel.js'
+
 
 const authUser = asyncHandler(async (req, res) => {
    const { email, password } = req.body
@@ -20,7 +21,6 @@ const authUser = asyncHandler(async (req, res) => {
        res.status(401)
        throw new Error('invalid email or pass')
    }
-
 })
 
 
@@ -29,16 +29,18 @@ const getUserProfile = asyncHandler(async (req, res) => {
   
   if (user) {
     res.json({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        isAdmin: user.isAdmin,
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
     })
-  } else {
-      res.status(404)
-      throw new Error('User not found')
+  }
+   else {
+    res.status(404)
+    throw new Error('User not found')
   }
 })
+
 
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body
@@ -83,15 +85,15 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     const updatedUser = await user.save()
 
     res.json({
-    _id: updatedUser._id,
-    name: updatedUser.name,
-    email: updatedUser.email,
-    isAdmin: updatedUser.isAdmin,
-    token: generateToken(updatedUser._id),
-  })
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      token: generateToken(updatedUser._id),
+    })
   } else {
     res.status(404)
-  throw new Error('User not found')
+    throw new Error('User not found')
   }
 })
 

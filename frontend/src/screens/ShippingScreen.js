@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer.js'
 import { saveShippingAddress } from '../actions/cartActions.js'
 
 const ShippingScreen = ({ history }) => {
-    const cart = useSelector(state => state.cart)
-    const { shippingAddress } = cart
 
+    const cart = useSelector((state) => state.cart)
+    const { shippingAddress } = cart
+    
     const [address, setAddress] = useState(shippingAddress.address)
     const [city, setCity] = useState(shippingAddress.city)
     const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
@@ -32,7 +33,7 @@ const ShippingScreen = ({ history }) => {
                 placeholder='Enter Address'
                 value={address}
                 required
-                onChange={(e) => setAdress(e.target.value)}
+                onChange={(e) => setAddress(e.target.value)}
             ></Form.Control>
             </Form.Group>
 

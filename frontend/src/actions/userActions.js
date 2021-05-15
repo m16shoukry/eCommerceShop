@@ -15,6 +15,7 @@ import {
     USER_UPDATE_PROFILE_FAIL
 } from "../constants/userConstants"
 
+
 export const login = (email, password) => async (dispatch) => {
     try {
         dispatch({
@@ -143,7 +144,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`,
             },
         }
-
+    
         const { data } = await axios.put('/api/users/profile', user, config)
 
         dispatch({
