@@ -41,6 +41,10 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 })
 
+const getUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({})
+  res.json(users)
+})
 
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body
@@ -102,4 +106,5 @@ export {
     getUserProfile,
     registerUser,
     updateUserProfile,
+    getUsers
 }
