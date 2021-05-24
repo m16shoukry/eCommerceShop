@@ -17,7 +17,7 @@ const ProductListScreen = ({ history }) => {
     const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete
     
     const productCreate = useSelector(state => state.productCreate)
-    const { loading: loadingCreate, error: errorCreate, success: successCreate } = productCreate
+    const { loading: loadingCreate, error: errorCreate, success: successCreate, product: createdProduct } = productCreate
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -30,13 +30,13 @@ const ProductListScreen = ({ history }) => {
         }
         
         if (successCreate){
-            history.push(`/admin/product/${createProduct._id}/edit`)
+            history.push(`/admin/product/${createdProduct._id}/edit`)
         }
         else {
             dispatch(listProducts())
         }
         
-    }, [dispatch, history, userInfo, successDelete, createProduct, successCreate])
+    }, [dispatch, history, userInfo, successDelete, successCreate])
 
     const deleteHandler = (id) => {
         if (window.confirm('Are You Sure')) {
