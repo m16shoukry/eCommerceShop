@@ -177,7 +177,7 @@ const OrderScreen = ({ match }) => {
               {loadingPay && <Loader />}
               {!sdkReady ? (<Loader />) : (
                 <PayPalButton 
-                  amount={order.itemsPrice}
+                  amount={order.totalPrice}
                   onSuccess={successPaymentHandler}
                 />
               )}
