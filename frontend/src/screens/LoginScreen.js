@@ -1,5 +1,6 @@
 import React, {useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Meta from '../components/Meta.js'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message.js'
@@ -37,6 +38,7 @@ const LoginScreen = ({ location, history }) => {
       <h1>Sign In</h1>
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
+      <Meta title={'Login Shop'}/>
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='email'>
           <Form.Label>Email Address</Form.Label>

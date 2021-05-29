@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Meta from '../components/Meta.js'
 import { PayPalButton } from 'react-paypal-button-v2'
 import { Link } from 'react-router-dom'
 import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap'
@@ -86,6 +87,7 @@ const OrderScreen = ({ match, history }) => {
   return loading ? <Loader /> :
     error ? <Message variant='danger'>{error}</Message> :
     <>
+    <Meta title={'CheckOut'}/>
     <h1>Oreder {order._id}</h1>
     <Row>
       <Col md={8}>

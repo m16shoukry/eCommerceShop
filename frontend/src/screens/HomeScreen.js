@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import Meta from '../components/Meta.js'
 import { listProducts } from '../actions/productActions.js' 
 import Product from '../components/Product'
 import { Row, Col } from 'react-bootstrap'
@@ -19,6 +20,8 @@ const HomeScreen = () => {
 
     return (
         <>
+        <Meta />
+
             <h1>Latest products</h1>
 
             {loading ? (

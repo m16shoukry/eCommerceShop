@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import Meta from '../components/Meta.js'
 import { Row, Col, Card, Button, Image, ListGroup, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -34,6 +35,7 @@ const CartScreen = ({ match, location, history }) => {
 
     return (
     <>
+     <Meta title={'Shopping Cart'}/>
         <Row>
         <Col md={8}>
           <h1>Shopping Cart</h1>
